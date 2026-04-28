@@ -1,9 +1,9 @@
 /**
- * UC5 – Validate User Move
+ * UC6 – Place Move on Board
  */
 public class TicTacToe {
 
-    // Board initialization
+    // Board
     static char[][] board = {
             {'-', '-', '-'},
             {'-', '-', '-'},
@@ -12,27 +12,29 @@ public class TicTacToe {
 
     public static void main(String[] args) {
 
-        int row = 1;
-        int col = 1;
+        int row = 0;
+        int col = 0;
+        char symbol = 'X';
 
-        boolean valid = isValidMove(row, col);
+        placeMove(row, col, symbol);
 
-        System.out.println("Move valid: " + valid);
+        printBoard();
     }
 
-    // Validate move
-    public static boolean isValidMove(int row, int col) {
+    // Place move on board
+    public static void placeMove(int row, int col, char symbol) {
+        board[row][col] = symbol;
+    }
 
-        // Check bounds
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
+    // Print board
+    public static void printBoard() {
+        System.out.println("Updated Board:");
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
         }
-
-        // Check if cell is empty
-        if (board[row][col] != '-') {
-            return false;
-        }
-
-        return true;
     }
 }
