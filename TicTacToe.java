@@ -1,5 +1,7 @@
+import java.util.Random;
+
 /**
- * UC6 – Place Move on Board
+ * UC7 – Computer Makes a Random Move
  */
 public class TicTacToe {
 
@@ -10,25 +12,38 @@ public class TicTacToe {
             {'-', '-', '-'}
     };
 
+    static char computerSymbol = 'O';
+
     public static void main(String[] args) {
 
-        int row = 0;
-        int col = 0;
-        char symbol = 'X';
-
-        placeMove(row, col, symbol);
-
+        computerMove();
         printBoard();
     }
 
-    // Place move on board
-    public static void placeMove(int row, int col, char symbol) {
-        board[row][col] = symbol;
+    // Computer random move
+    public static void computerMove() {
+
+        Random rand = new Random();
+
+        int row, col;
+
+        while (true) {
+            int slot = rand.nextInt(9) + 1; // 1–9
+
+            row = (slot - 1) / 3;
+            col = (slot - 1) % 3;
+
+            // Check if valid
+            if (board[row][col] == '-') {
+                board[row][col] = computerSymbol;
+                break;
+            }
+        }
     }
 
     // Print board
     public static void printBoard() {
-        System.out.println("Updated Board:");
+        System.out.println("Board after computer move:");
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
