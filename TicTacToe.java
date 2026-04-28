@@ -1,27 +1,38 @@
 /**
- * UC4 – Convert Slot Number (1–9) to Row & Column
+ * UC5 – Validate User Move
  */
 public class TicTacToe {
 
+    // Board initialization
+    static char[][] board = {
+            {'-', '-', '-'},
+            {'-', '-', '-'},
+            {'-', '-', '-'}
+    };
+
     public static void main(String[] args) {
 
-        int slot = 7; // sample input
+        int row = 1;
+        int col = 1;
 
-        int row = getRowFromSlot(slot);
-        int col = getColFromSlot(slot);
+        boolean valid = isValidMove(row, col);
 
-        System.out.println("Slot: " + slot);
-        System.out.println("Row: " + row);
-        System.out.println("Column: " + col);
+        System.out.println("Move valid: " + valid);
     }
 
-    // Convert slot to row
-    public static int getRowFromSlot(int slot) {
-        return (slot - 1) / 3;
-    }
+    // Validate move
+    public static boolean isValidMove(int row, int col) {
 
-    // Convert slot to column
-    public static int getColFromSlot(int slot) {
-        return (slot - 1) % 3;
+        // Check bounds
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
+        }
+
+        // Check if cell is empty
+        if (board[row][col] != '-') {
+            return false;
+        }
+
+        return true;
     }
 }
